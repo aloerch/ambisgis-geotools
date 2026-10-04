@@ -466,7 +466,7 @@
     <!-- build configuration -->
     <build.timestamp>${maven.build.timestamp}</build.timestamp>
     <fork.javac>false</fork.javac>
-    <git.commit.runOnlyOnce>true</git.commit.runOnlyOnce>
+    <git.commit.runOnlyOnce>false</git.commit.runOnlyOnce>
     <git.commit.useNative>false</git.commit.useNative>
     <javac.maxHeapSize>256M</javac.maxHeapSize>
     <javac.version>9+181-r4173-1</javac.version>
@@ -1134,7 +1134,8 @@
             <!-- the git describe step is expensive, we don't need it -->
             <skip>true</skip>
           </gitDescribe>
-          <injectAllReactorProjects>true</injectAllReactorProjects>
+          <!-- The owned aggregate contains several independent Git roots. -->
+          <injectAllReactorProjects>false</injectAllReactorProjects>
           <runOnlyOnce>${git.commit.runOnlyOnce}</runOnlyOnce>
           <!--
           In order to use native git (3+ times faster) add the following in ~/.m2/settings.xml
